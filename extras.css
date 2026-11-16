@@ -1,0 +1,168 @@
+/* =====================================================
+   extras.css  -  acabamento premium (carregar DEPOIS do style.css)
+   Nao altera o style.css: so acrescenta por cima.
+   ===================================================== */
+
+::selection{background:rgba(66,165,245,.35);color:#fff;}
+:focus-visible{outline:2px solid #42A5F5;outline-offset:3px;border-radius:8px;}
+
+/* ---------- Barra de progresso de scroll ---------- */
+#xt-progress{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:10001;
+  background:linear-gradient(90deg,#1565C0,#42A5F5,#00C853);
+  box-shadow:0 0 12px rgba(66,165,245,.8);transition:width .12s linear;
+}
+
+/* ---------- Botao flutuante Telegram (canal) ---------- */
+.xt-fab{
+  position:fixed;right:18px;bottom:20px;z-index:7000;
+  display:flex;align-items:center;gap:10px;
+  padding:13px 20px 13px 16px;border-radius:999px;
+  background:linear-gradient(135deg,#0088CC,#29B6F6);
+  color:#fff;font-weight:800;font-size:.88rem;letter-spacing:.02em;
+  text-decoration:none;font-family:inherit;
+  box-shadow:0 10px 28px rgba(0,136,204,.55),0 0 0 1px rgba(255,255,255,.18) inset;
+  transition:transform .22s cubic-bezier(.4,0,.2,1),box-shadow .22s;
+  animation:xtFabIn .6s .8s cubic-bezier(.4,0,.2,1) both;
+}
+.xt-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 34px rgba(0,136,204,.7);}
+.xt-fab svg{width:26px;height:26px;fill:#fff;flex-shrink:0;position:relative;z-index:1;}
+.xt-fab-label{position:relative;z-index:1;white-space:nowrap;}
+.xt-fab::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:rgba(41,182,246,.55);z-index:0;animation:xtPulse 2.2s ease-out infinite;
+}
+@keyframes xtPulse{0%{transform:scale(1);opacity:.7;}100%{transform:scale(1.55);opacity:0;}}
+@keyframes xtFabIn{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+#xt-top{
+  position:fixed;right:22px;bottom:88px;z-index:7000;
+  width:42px;height:42px;border-radius:50%;border:1px solid rgba(66,165,245,.5);
+  background:rgba(13,20,40,.92);color:#42A5F5;font-size:1.15rem;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:opacity .25s,transform .25s,background .2s;
+  box-shadow:0 6px 18px rgba(0,0,0,.5);
+}
+#xt-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+#xt-top:hover{background:#1565C0;color:#fff;}
+
+@media(max-width:600px){
+  .xt-fab{padding:14px;right:14px;bottom:16px;}
+  .xt-fab-label{display:none;}
+  #xt-top{right:18px;bottom:80px;}
+}
+
+/* ---------- Cards ---------- */
+.product-card{backdrop-filter:blur(6px);}
+.product-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:6;
+  background:linear-gradient(135deg,rgba(66,165,245,.0),rgba(66,165,245,.85),rgba(0,200,83,.55),rgba(66,165,245,.0));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:opacity .3s;
+}
+.product-card:hover::before{opacity:1;}
+.product-card .card-title{text-shadow:0 2px 14px rgba(66,165,245,.25);}
+
+/* Indicador "preview" quando o video esta a tocar */
+.video-wrapper.xt-playing::after{
+  content:'\25CF  PREVIEW';position:absolute;top:10px;left:10px;z-index:4;
+  font-size:.66rem;font-weight:800;letter-spacing:.12em;color:#fff;
+  background:rgba(211,47,47,.9);padding:4px 10px;border-radius:20px;
+  box-shadow:0 2px 10px rgba(0,0,0,.5);animation:xtBlink 1.6s ease-in-out infinite;
+}
+@keyframes xtBlink{50%{opacity:.65;}}
+
+/* Botao Buy com brilho a passar */
+.btn-buy::before{
+  content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);transition:left .6s;pointer-events:none;
+}
+.btn-buy:hover::before{left:130%;}
+
+/* Preco: etiqueta mais forte */
+.price-badge-external{font-size:16px !important;padding:7px 16px !important;font-weight:900;}
+
+/* ---------- Reveal ao rolar ---------- */
+.xt-reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+.xt-reveal.in{opacity:1;transform:none;}
+
+/* ---------- Seccoes novas (Como comprar / FAQ / Canal) ---------- */
+.xt-section{max-width:1200px;margin:0 auto;padding:56px 22px 8px;}
+.xt-eyebrow{
+  text-align:center;font-size:.74rem;font-weight:800;letter-spacing:.22em;
+  color:#42A5F5;text-transform:uppercase;margin-bottom:6px;
+}
+.xt-title{
+  text-align:center;font-family:'Bebas Neue',sans-serif;font-size:2.3rem;
+  letter-spacing:.06em;color:#fff;margin-bottom:30px;
+}
+.xt-steps{display:grid;grid-template-columns:1fr;gap:18px;}
+@media(min-width:760px){.xt-steps{grid-template-columns:repeat(3,1fr);}}
+.xt-step{
+  position:relative;background:var(--card-bg,#0F1729);
+  border:1px solid var(--card-border,rgba(66,165,245,.18));
+  border-radius:16px;padding:26px 22px 22px;text-align:center;
+  transition:transform .25s,box-shadow .25s;
+}
+.xt-step:hover{transform:translateY(-5px);box-shadow:0 12px 34px rgba(30,136,229,.3);}
+.xt-step-num{
+  width:46px;height:46px;margin:0 auto 14px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.2rem;color:#fff;
+  background:linear-gradient(135deg,#1565C0,#42A5F5);
+  box-shadow:0 0 18px rgba(66,165,245,.55);
+}
+.xt-step h3{font-size:1.02rem;color:#fff;margin-bottom:6px;}
+.xt-step p{font-size:.86rem;color:var(--text-soft,#8BA3C7);line-height:1.55;}
+
+.xt-faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+.xt-faq details{
+  background:var(--card-bg,#0F1729);border:1px solid var(--card-border,rgba(66,165,245,.18));
+  border-radius:12px;padding:0 18px;transition:border-color .2s;
+}
+.xt-faq details[open]{border-color:rgba(66,165,245,.55);}
+.xt-faq summary{
+  cursor:pointer;list-style:none;padding:15px 0;font-weight:700;font-size:.93rem;color:#fff;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.xt-faq summary::-webkit-details-marker{display:none;}
+.xt-faq summary::after{content:'+';font-size:1.3rem;color:#42A5F5;transition:transform .2s;}
+.xt-faq details[open] summary::after{transform:rotate(45deg);}
+.xt-faq details p{padding:0 0 16px;font-size:.87rem;color:var(--text-soft,#8BA3C7);line-height:1.6;}
+
+.xt-cta{
+  max-width:1200px;margin:56px auto 0;padding:0 22px;
+}
+.xt-cta-box{
+  position:relative;overflow:hidden;text-align:center;
+  border-radius:20px;padding:42px 24px;
+  background:linear-gradient(135deg,#0D1F4A,#0B3A6B 55%,#006A9E);
+  border:1px solid rgba(66,165,245,.45);
+  box-shadow:0 14px 44px rgba(0,136,204,.28);
+}
+.xt-cta-box::before{
+  content:'';position:absolute;width:420px;height:420px;top:-210px;right:-120px;
+  background:radial-gradient(circle,rgba(66,165,245,.4),transparent 70%);pointer-events:none;
+}
+.xt-cta-box h2{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;letter-spacing:.06em;color:#fff;position:relative;}
+.xt-cta-box p{color:#CFE4FF;font-size:.92rem;margin:6px 0 22px;position:relative;}
+.xt-cta-btn{
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  background:#fff;color:#0A4F7E;font-weight:800;font-size:.95rem;text-decoration:none;
+  padding:14px 30px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.35);
+  transition:transform .2s,box-shadow .2s;
+}
+.xt-cta-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(0,0,0,.45);}
+.xt-cta-btn svg{width:22px;height:22px;fill:#0088CC;}
+
+/* Cabecalho: "Telegram Channel" por baixo do "DM Telegram" */
+.xt-contact-col{display:flex;flex-direction:column;gap:8px;align-items:stretch;}
+.xt-contact-col .contact-btn{justify-content:center;}
+
+@media (prefers-reduced-motion:reduce){
+  .xt-fab,.xt-fab::before,.video-wrapper.xt-playing::after{animation:none !important;}
+  .xt-reveal{opacity:1;transform:none;transition:none;}
+}
