@@ -172,7 +172,7 @@ const products = [
   },
   {
     title: "HIGH SCHOOL TEEN",
-    video: "https://res.cloudinary.com/fa9nb5m9/video/upload/v1794869831/1_4952088083878117935.mov.mp4",
+    video: "https://mega.nz/file/NBx0iaJR#SSUrw0cDzZBM2ZpHzr0JomRsygtYcw1-Wo1nBbJMhkA.mp4",
     desc: "HIGH SCHOOL MORE THAN 35GB.",
     chips: ["7GB+", "HOT", "2025"],
     badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "NEW", cls: "new" }],
