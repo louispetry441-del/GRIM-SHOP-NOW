@@ -1,2 +1,0 @@
-# hot_premium
-vamoss
